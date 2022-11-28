@@ -77,8 +77,8 @@ The instructions provided below specify the steps to build Apache Pulsar version
   wget https://raw.githubusercontent.com/haubenr/grpc-grpc-java/haubenr_add-s390x-support/compiler/check-artifact.sh
   
   (For RHEL Only)
-    sed -i '69,69 s/format="$(s390x-linux-gnu-objdump -f "$1" | grep -o "file format .*$" | grep -o "[^ ]*$")"/format="elf64-s390"/g' check-artifact.sh
-	sed -i '134,134 s/format="$(s390x-linux-gnu-objdump -f "$1" | grep -o "file format .*$" | grep -o "[^ ]*$")"/ /g' check-artifact.sh
+    sed -i '69,69 s/$(s390x-linux-gnu-objdump -f "$1" | grep -o "file format .*$/elf64-s390"/g' check-artifact.sh
+    sed -i '123d' check-artifact.sh
   
   cd ..
   ./gradlew build -PskipAndroid=true -PskipCodegen=true -x test
