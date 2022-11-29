@@ -58,13 +58,41 @@ The instructions provided below specify the steps to build Apache Pulsar version
   ```
 
 ### 1.6) Install Protobuf
-  ```
-  cd $SOURCE_ROOT/
-  wget -q https://raw.githubusercontent.com/linux-on-ibm-z/scripts/master/Protobuf/3.19.2/build_protobuf.sh
-  # Build Protobuf
-  bash build_protobuf.sh
-  ```
-
+  
+  * Ubuntu 18.04
+    ```
+    sudo apt-get update  
+    sudo apt-get install -y autoconf automake g++-4.8 git gzip libtool make zlib1g-dev
+    sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-4.8 10
+    sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-4.8 10
+    ```
+  * GCC 4.9.4 (Only for RHEL 8.x and Ubuntu 20.x, above)
+    ```
+    cd $SOURCE_ROOT
+    wget http://ftp.gnu.org/gnu/gcc/gcc-4.9.4/gcc-4.9.4.tar.gz
+    tar xzf gcc-4.9.4.tar.gz
+    cd gcc-4.9.4/
+    ./contrib/download_prerequisites
+    mkdir build
+    cd build/
+    ../configure --enable-shared --disable-multilib --enable-threads=posix --with-system-zlib --enable-languages=c,c++
+    make -j 2       # Or a higher number for more parallelism
+    sudo make install
+    export PATH=/usr/local/bin:$PATH
+    ```
+  * Build and Install Protobuf
+    ```
+    cd $SOURCE_ROOT
+    git clone https://github.com/protocolbuffers/protobuf.git
+    cd protobuf
+    git checkout v3.19.2
+    git submodule update --init --recursive
+    ./autogen.sh
+    ./configure
+    make -j 4
+    sudo make install
+    sudo ldconfig
+    ```
 ### 1.7) Install grpc-java
 
   ```
