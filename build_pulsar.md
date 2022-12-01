@@ -68,6 +68,8 @@ The instructions provided below specify the steps to build Apache Pulsar version
     ```
   * GCC 4.9.4 (Only for RHEL 8.x and Ubuntu 20.x, above)
     ```
+    sudo apt-get update
+    sudo apt-get install -y autoconf automake bzip2 g++ git gzip libtool make tar wget zlib1g-dev
     cd $SOURCE_ROOT
     wget http://ftp.gnu.org/gnu/gcc/gcc-4.9.4/gcc-4.9.4.tar.gz
     tar xzf gcc-4.9.4.tar.gz
