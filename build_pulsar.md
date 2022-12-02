@@ -129,10 +129,10 @@ The instructions provided below specify the steps to build Apache Pulsar version
   git clone https://github.com/apache/pulsar.git
   cd pulsar
   git checkout v2.10.1
-  sed -i 's/<rocksdb.version>6.10.2</rocksdb.version>/<rocksdb.version>6.29.5</rocksdb.version>/gI' pom.xml
-  sed -i 's/<jna.version>4.2.0</jna.version>/<jna.version>5.12.0</jna.version>/gI' pom.xml
-  sed -i 's/<surefire.version>3.0.0-M3</surefire.version>/<surefire.version>2.19.1</surefire.version>/gI' pom.xml
-  sed -i 's/<snappy.version>1.1.7</snappy.version>/<snappy.version>1.1.8.4</snappy.version>/gI' pom.xml
+  sed -i '121,121 s/6.10.2/6.29.5/g' pom.xml
+  sed -i '110,110 s/1.1.7/1.1.8.4/g' pom.xml
+  sed -i '198,198 s/4.2.0/5.12.0/g' pom.xml
+  sed -i '242,242 s/3.0.0-M3/2.19.1/g' pom.xml
   ```
 
 ### 1.10) Build
