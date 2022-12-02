@@ -46,7 +46,7 @@ The instructions provided below specify the steps to build Apache Pulsar version
   ```
 
 ### 1.4) Set JAVA_HOME
- 
+    readlink -e $(which java) #prints the java path
     export JAVA_HOME=/<path to java>/
     export PATH=$JAVA_HOME/bin:$PATH
 
