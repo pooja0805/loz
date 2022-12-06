@@ -12,13 +12,7 @@ The instructions provided below specify the steps to build Apache Pulsar version
 
 ## Step 1: Build and Install Apache Pulsar
 
-### 1.1) Build using script
-* _If you want to build Pulsar using manual steps, go to STEP 1.2.
-* _Use the following commands to build Pulsar using the build script. Please make sure you have wget installed.
-
-### If the build completes successfully, go to STEP 3. In case of error, check logs for more details or go to STEP 1.2 to follow manual build steps.
-
-### 1.2) Install dependencies
+### 1.1) Install dependencies
 
     export SOURCE_ROOT=/<source_root>/
 
@@ -32,7 +26,7 @@ The instructions provided below specify the steps to build Apache Pulsar version
   apt install -y sudo git vim nano curl zip unzip tar wget
   ```
 
-### 1.3) Install Java
+### 1.2) Install Java
 * With OpenJDK 11
 
 * RHEL (8.6, 9.0)
@@ -45,19 +39,19 @@ The instructions provided below specify the steps to build Apache Pulsar version
   sudo apt-get install -y openjdk-11-jdk
   ```
 
-### 1.4) Set JAVA_HOME
+### 1.3) Set JAVA_HOME
     readlink -e $(which java) #prints the java path
     export JAVA_HOME=/<path to java>/
     export PATH=$JAVA_HOME/bin:$PATH
 
-### 1.5) Install maven
+### 1.4) Install maven
   ```
   wget https://archive.apache.org/dist/maven/maven-3/3.6.3/binaries/apache-maven-3.6.3-bin.tar.gz
   tar -xvzf apache-maven-3.6.3-bin.tar.gz
   export PATH=$PATH:$SOURCE_ROOT/apache-maven-3.6.3/bin/  
   ```
 
-### 1.6) Install Protobuf
+### 1.5) Install Protobuf
   
   * Ubuntu 18.04
     ```
@@ -95,7 +89,7 @@ The instructions provided below specify the steps to build Apache Pulsar version
     sudo make install
     sudo ldconfig
     ```
-### 1.7) Install grpc-java
+### 1.6) Install grpc-java
 
   ```
   cd $SOURCE_ROOT/
@@ -115,14 +109,14 @@ The instructions provided below specify the steps to build Apache Pulsar version
   ./gradlew publishToMavenLocal -PskipAndroid=true
   ```
 
-### 1.8) Install netty-tcnative
+### 1.7) Install netty-tcnative
   ```
   cd $SOURCE_ROOT/
   wget -q https://raw.githubusercontent.com/linux-on-ibm-z/scripts/master/netty-tcnative/2.0.52/build_netty.sh
   bash build_netty.sh -y  # Provide -j for java to use [Temurin11, OpenJDK11]
   ```
 
-### 1.9) Download Pulsar
+### 1.8) Download Pulsar
 
   ```
   cd $SOURCE_ROOT/
@@ -135,7 +129,7 @@ The instructions provided below specify the steps to build Apache Pulsar version
   sed -i '242,242 s/3.0.0-M3/2.19.1/g' pom.xml
   ```
 
-### 1.10) Build
+### 1.9) Build
   ```
   cd $SOURCE_ROOT/pulsar
   mvn install -DskipTests
